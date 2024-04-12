@@ -13,18 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
-
+        <activity
+            android:name=".AppointmentBooking"
+            android:exported="false" />
         <!-- Declare LoginActivity -->
         <activity android:name=".Login" />
         <activity android:name=".Register" />
-
-
-
+        <activity android:name=".HomeActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
