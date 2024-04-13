@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.patient;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
+import com.example.myapplication.Login;
+import com.example.myapplication.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -47,37 +48,9 @@ public class HomeActivity extends AppCompatActivity {
                 if(menuItem.getItemId() == R.id.nav_logout){
                     FirebaseAuth.getInstance().signOut();
                     finish();
-                    startActivity(new Intent(HomeActivity.this,Login.class));
+                    startActivity(new Intent(HomeActivity.this, Login.class));
                 }else {
-                    Class fragmentClass=null;
-                    Fragment fragment = null;
-                    switch(menuItem.getItemId()) {
-                        case R.id.nav_appointment:
-                            fragmentClass = AppointmentFragment.class;
-                            break;
-//                         case R.id.nav_home:
-//                            fragmentClass = HomeActivity.class;
-//                            break;
-//                        case R.id.nav_third_fragment:
-//                            fragmentClass = ThirdFragment.class;
-                            break;
-                        default:
-                            fragmentClass = HomeActivity.class;
-                    }
-                    try {
-                        fragment = (Fragment) fragmentClass.newInstance();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
-
-                    // Highlight the selected item has been done by NavigationView
-                    menuItem.setChecked(true);
-                    // Set action bar title
-                    setTitle(menuItem.getTitle());
-                    // Close the navigation drawer
-                    drawerLayout.closeDrawers();
+                    selectDrawerItem(menuItem);
                 }
             return false;
             }
@@ -85,6 +58,32 @@ public class HomeActivity extends AppCompatActivity {
 
         // to make the Navigation drawer icon always appear on the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    public void selectDrawerItem(MenuItem menuItem) {
+        Class fragmentClass;
+        Fragment fragment = null;
+        if(menuItem.getItemId() == R.id.nav_appointment)
+            fragmentClass = AppointmentFragment.class;
+        else if (menuItem.getItemId() ==  R.id.nav_reminder)
+            fragmentClass = ReminderFragment.class;
+        else {
+            fragmentClass = AppointmentFragment.class;
+        }
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+
+        // Highlight the selected item has been done by NavigationView
+        menuItem.setChecked(true);
+        // Set action bar title
+        setTitle(menuItem.getTitle());
+        // Close the navigation drawer
+        drawerLayout.closeDrawers();
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.patient;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -14,6 +14,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import com.example.myapplication.MainActivity;
+import com.example.myapplication.R;
 
 import java.util.Calendar;
 

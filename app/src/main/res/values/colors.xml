@@ -2,4 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+
+    <color name="colorPrimary">#0037FF</color>
+    <color name="colorAccent">#38F4BB</color>
+
+    <color name="colorPrimaryDark">#2CD2AA</color>
+
+    <color name="color_light_grey">#4d4d4d</color>
+
+    <drawable name="touchFeedback">#CFD8DC</drawable>
 </resources>

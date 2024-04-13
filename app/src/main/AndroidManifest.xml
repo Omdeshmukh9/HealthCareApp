@@ -19,7 +19,7 @@
         <!-- Declare LoginActivity -->
         <activity android:name=".Login" />
         <activity android:name=".Register" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".patient.HomeActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

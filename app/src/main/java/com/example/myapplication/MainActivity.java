@@ -1,15 +1,18 @@
 package com.example.myapplication;
 
-import static com.example.myapplication.R.id.appointmentButton;
-
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.patient.HomeActivity;
 import com.google.firebase.auth.FirebaseAuth;
+
+
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,12 +23,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (mInstance == null) {
+            mInstance = getApplicationContext();
+        }
+
         login = findViewById(R.id.loginButton);
         register = findViewById(R.id.registerButton);
         appointment = findViewById(R.id.appointmentButton);
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
             finish();
-            startActivity(new Intent(MainActivity.this,HomeActivity.class));
+            startActivity(new Intent(MainActivity.this, HomeActivity.class));
         }
 
         // Set OnClickListener to the login button
@@ -48,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        appointment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,AppointmentBooking.class);
-                startActivity(intent);
-            }
-        });
+    }
+
+    private static Context mInstance;
+
+
+    public static Context getInstance() {
+        return mInstance;
     }
 }
