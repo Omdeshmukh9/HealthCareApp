@@ -6,36 +6,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
     android:orientation="vertical"
-    android:background="@drawable/bg_image"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:id="@+id/view2"
+        app:cardCornerRadius="450dp"
+        android:shape="ring"
+        >
 
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:src="@drawable/logo">
+
+        </ImageView>
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:layout_marginTop="250dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:layout_centerInParent="true"/>
+        android:layout_marginVertical="10dp"
+        android:paddingVertical="15dp"
+        android:paddingHorizontal="70dp"
+        android:textSize="20sp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="Login" />
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="Create Account"
+        android:textSize="20sp"
         android:layout_gravity="center"
+        android:paddingVertical="15dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:paddingHorizontal="70dp"
         />
 
-    <Button
-        android:id="@+id/appointmentButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Appointment"
-        android:layout_marginVertical="10dp"
-        android:layout_gravity="center" />
+
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

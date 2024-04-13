@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.myapplication.Login;
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
                 if(menuItem.getItemId() == R.id.nav_logout){
                     FirebaseAuth.getInstance().signOut();
                     finish();
-                    startActivity(new Intent(HomeActivity.this, Login.class));
+                    startActivity(new Intent(HomeActivity.this, MainActivity.class));
                 }else {
                     selectDrawerItem(menuItem);
                 }

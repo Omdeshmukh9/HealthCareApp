@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button login , register , appointment ;
+    Button login , register ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
         login = findViewById(R.id.loginButton);
         register = findViewById(R.id.registerButton);
-        appointment = findViewById(R.id.appointmentButton);
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
             finish();
             startActivity(new Intent(MainActivity.this, HomeActivity.class));
