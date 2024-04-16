@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.doctor.DoctorHomeActivity;
 import com.example.myapplication.patient.HomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -170,7 +171,7 @@ public class Register extends AppCompatActivity {
                             if(isPatient){
                                 resultClass= HomeActivity.class;
                             }else{
-                                resultClass=HomeActivity.class;
+                                resultClass= DoctorHomeActivity.class;
                             }
                             startActivity(new Intent(Register.this, resultClass));
                             finish();

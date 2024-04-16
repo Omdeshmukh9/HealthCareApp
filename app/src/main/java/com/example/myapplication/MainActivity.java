@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             FirebaseFirestore.getInstance().collection("users_doctors")
                             .whereEqualTo("doctor_uid",firebaseAuth.getCurrentUser().getUid().toString())
                                     .get()
-                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                                     if(task.isSuccessful()){
