@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.myapplication.HomeFragment;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -223,6 +224,7 @@ public class AppointmentBookingFragment extends Fragment {
                         Class fragmentClass;
                         if(task.isSuccessful()){
                             Toast.makeText(getActivity(), "Appointment is Booked", Toast.LENGTH_SHORT).show();
+                            ((HomeActivity)getContext()).changeFragment(HomeFragment.newInstance());
 
                         }else{
                             Toast.makeText(getActivity(), "Appointment Booking Failed", Toast.LENGTH_SHORT).show();

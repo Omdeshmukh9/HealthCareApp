@@ -91,9 +91,7 @@ public class HomeActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
-
+        changeFragment(fragment);
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
         // Set action bar title
@@ -101,6 +99,12 @@ public class HomeActivity extends AppCompatActivity {
         // Close the navigation drawer
         drawerLayout.closeDrawers();
     }
+
+    public void changeFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
