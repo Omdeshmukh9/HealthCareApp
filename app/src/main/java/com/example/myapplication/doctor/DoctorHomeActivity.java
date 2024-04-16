@@ -14,10 +14,12 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.myapplication.Login;
 import com.example.myapplication.R;
-import com.example.myapplication.patient.AppointmentFragment;
+import com.example.myapplication.patient.AppointmentBookingFragment;
 import com.example.myapplication.patient.ReminderFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DoctorHomeActivity extends AppCompatActivity {
 
@@ -26,6 +28,9 @@ public class DoctorHomeActivity extends AppCompatActivity {
     public ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
 
+    FirebaseFirestore firebaseFirestore;
+    FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +38,8 @@ public class DoctorHomeActivity extends AppCompatActivity {
 
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         navigationView = findViewById(R.id.navigation_view);
@@ -65,12 +72,12 @@ public class DoctorHomeActivity extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         Class fragmentClass;
         Fragment fragment = null;
-        if(menuItem.getItemId() == R.id.nav_appointment)
-            fragmentClass = AppointmentFragment.class;
+        if(menuItem.getItemId() == R.id.nav_home)
+            fragmentClass = DoctorAppointmentsFragment.class;
         else if (menuItem.getItemId() ==  R.id.nav_reminder)
-            fragmentClass = ReminderFragment.class;
+            fragmentClass = DoctorAppointmentsFragment.class;
         else {
-            fragmentClass = AppointmentFragment.class;
+            fragmentClass = DoctorAppointmentsFragment.class;
         }
         try {
             fragment = (Fragment) fragmentClass.newInstance();
@@ -96,6 +103,12 @@ public class DoctorHomeActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public FirebaseFirestore getFirebaseFirestore(){
+        return firebaseFirestore;
+    }
+
+    public FirebaseAuth getFirebaseAuth(){return firebaseAuth;}
 
 
 

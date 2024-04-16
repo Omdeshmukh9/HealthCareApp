@@ -20,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
@@ -39,10 +40,10 @@ import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AppointmentFragment#newInstance} factory method to
+ * Use the {@link AppointmentBookingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AppointmentFragment extends Fragment {
+public class AppointmentBookingFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,7 +55,7 @@ public class AppointmentFragment extends Fragment {
     private String mParam2;
 
 
-    public AppointmentFragment() {
+    public AppointmentBookingFragment() {
 
         // Required empty public constructor
     }
@@ -68,8 +69,8 @@ public class AppointmentFragment extends Fragment {
      * @return A new instance of fragment AppontmentFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AppointmentFragment newInstance(String param1, String param2) {
-        AppointmentFragment fragment = new AppointmentFragment();
+    public static AppointmentBookingFragment newInstance(String param1, String param2) {
+        AppointmentBookingFragment fragment = new AppointmentBookingFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -109,7 +110,7 @@ public class AppointmentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_appointment, container, false);
+        view = inflater.inflate(R.layout.fragment_appointment_booking, container, false);
         back = view.findViewById(R.id.backButton);
         date = view.findViewById(R.id.pickdate);
         submit = view.findViewById(R.id.submitButton);
@@ -217,10 +218,12 @@ public class AppointmentFragment extends Fragment {
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
+                        Class fragmentClass;
                         if(task.isSuccessful()){
-                            Log.d("Success","Yes");
+                            Toast.makeText(getActivity(), "Appointment is Booked", Toast.LENGTH_SHORT).show();
+
                         }else{
-                            Log.d("Failed","sdf");
+                            Toast.makeText(getActivity(), "Appointment Booking Failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 })

@@ -6,7 +6,7 @@
     android:id="@+id/appointment_fragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background"
-    tools:context=".patient.AppointmentFragment">
+    tools:context=".patient.AppointmentBookingFragment">
 
 <ScrollView
     android:layout_width="match_parent"
@@ -109,6 +109,19 @@
                         android:text="Offline at Hospital" />
                 </RadioGroup>
 
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="10dp"
+            app:cardCornerRadius="20dp"
+            android:elevation="10dp">
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -142,9 +155,8 @@
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
         </androidx.cardview.widget.CardView>
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

@@ -12,7 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.myapplication.Login;
+import com.example.myapplication.HomeFragment;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.google.android.material.navigation.NavigationView;
@@ -43,6 +43,10 @@ public class HomeActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new HomeFragment()).commit();
+        }
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -57,6 +61,8 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        navigationView.getMenu().getItem(0).setChecked(true);
+
         // to make the Navigation drawer icon always appear on the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -65,11 +71,13 @@ public class HomeActivity extends AppCompatActivity {
         Class fragmentClass;
         Fragment fragment = null;
         if(menuItem.getItemId() == R.id.nav_appointment)
-            fragmentClass = AppointmentFragment.class;
+            fragmentClass = AppointmentBookingFragment.class;
         else if (menuItem.getItemId() ==  R.id.nav_reminder)
             fragmentClass = ReminderFragment.class;
+        else if (menuItem.getItemId() ==  R.id.nav_home)
+            fragmentClass = HomeFragment.class;
         else {
-            fragmentClass = AppointmentFragment.class;
+            fragmentClass = HomeFragment.class;
         }
         try {
             fragment = (Fragment) fragmentClass.newInstance();
