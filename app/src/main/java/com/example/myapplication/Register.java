@@ -142,6 +142,7 @@ public class Register extends AppCompatActivity {
                                     Map<String,String> map = new HashMap<>();
                                     map.put("username",editTextUsername.getText().toString().trim());
                                     map.put("email",email);
+                                    map.put("doctor_uid",mAuth.getUid());
                                     uploadData(map);
                                 } else {
                                     Toast.makeText(Register.this, "Failed to register! Please try again later", Toast.LENGTH_LONG).show();
