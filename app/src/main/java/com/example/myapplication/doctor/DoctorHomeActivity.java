@@ -29,7 +29,7 @@ public class DoctorHomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_doctor_home);
 
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer

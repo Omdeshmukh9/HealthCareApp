@@ -2,9 +2,14 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +20,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -27,6 +33,12 @@ public class Register extends AppCompatActivity {
     private Button buttonRegister ,login;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+
+    String[] item = {"Doctor", "Patient"};
+
+    Spinner dropdown;
+
+    ArrayAdapter<String> adapterItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +54,28 @@ public class Register extends AppCompatActivity {
         editTextUsername = findViewById(R.id.editTextUsername);
         buttonRegister = findViewById(R.id.buttonRegister);
         login = findViewById(R.id.buttonLogin);
+
+        dropdown = findViewById(R.id.userCategory);
+        adapterItems = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,item);
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+
+
+        dropdown.setAdapter(adapterItems);
+
+
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,14 +152,27 @@ public class Register extends AppCompatActivity {
     }
 
     private void uploadData(Map<String,String> object){
-        db.collection("users_patient")
+        CollectionReference userReference;
+        Boolean isPatient = dropdown.getSelectedItem().toString().equals("Patient");
+        if(isPatient){
+            userReference = db.collection("users_patients");
+        }else{
+            userReference = db.collection("users_doctors");
+        }
+        userReference
                 .document(Objects.requireNonNull(mAuth.getUid()))
                 .set(object)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            startActivity(new Intent(Register.this, HomeActivity.class));
+                            Class resultClass;
+                            if(isPatient){
+                                resultClass= HomeActivity.class;
+                            }else{
+                                resultClass=HomeActivity.class;
+                            }
+                            startActivity(new Intent(Register.this, resultClass));
                             finish();
                         }
                     }
@@ -137,4 +184,6 @@ public class Register extends AppCompatActivity {
                     }
                 });
     }
+
+
 }

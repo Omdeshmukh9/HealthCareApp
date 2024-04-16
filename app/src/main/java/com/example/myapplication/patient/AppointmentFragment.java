@@ -4,21 +4,38 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,24 +86,38 @@ public class AppointmentFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
 
         }
+
+        db = FirebaseFirestore.getInstance();
+        doctorMap = new HashMap<>();
     }
 
+    FirebaseFirestore db;
 
-    Button back;
+    Button back,submit;
     EditText time;
 
     TextView dateView;
+    RadioGroup appointment_type, appointment_mode;
+
     DatePicker date;
     final Calendar myCalendar= Calendar.getInstance();
+    View view;
+    Spinner doctorDropDown;
+
+    ArrayAdapter<String> doctorArrayAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_appointment, container, false);
+        view = inflater.inflate(R.layout.fragment_appointment, container, false);
         back = view.findViewById(R.id.backButton);
         date = view.findViewById(R.id.pickdate);
+        submit = view.findViewById(R.id.submitButton);
         time = view.findViewById(R.id.picktime);
         dateView = view.findViewById(R.id.dateSelect);
+        doctorDropDown = view.findViewById(R.id.select_doctor_dropdown);
+        appointment_type = view.findViewById(R.id.rd1);
+        appointment_mode = view.findViewById(R.id.rd2);
 
 
         date.setMinDate(myCalendar.getTimeInMillis());
@@ -124,6 +155,80 @@ public class AppointmentFragment extends Fragment {
             }
         });
 
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadData();
+            }
+        });
+
+        getDoctorList();
+
+
         return view;
+    }
+
+    Map<String,String> doctorMap;
+    void getDoctorList(){
+        List<String> items = new ArrayList<>();
+        db.collection("users_doctors")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                           List<DocumentSnapshot> documentSnapshotList = task.getResult().getDocuments();
+                           doctorMap.clear();
+                            for (DocumentSnapshot d:
+                                 documentSnapshotList) {
+                                doctorMap.put("Dr. "+d.get("username").toString(),d.getId());
+                                items.add("Dr. "+d.get("username").toString());
+                            }
+                            doctorArrayAdapter = new ArrayAdapter<String>(getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,items);
+                            doctorDropDown.setAdapter(doctorArrayAdapter);
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+    }
+
+    void uploadData(){
+        String type = ((RadioButton)view.findViewById(appointment_type.getCheckedRadioButtonId())).getText().toString();
+        String mode = ((RadioButton)view.findViewById(appointment_mode.getCheckedRadioButtonId())).getText().toString();
+        String date =dateView.getText().toString();
+        String t = time.getText().toString();
+        String doctor = doctorMap.get( doctorDropDown.getSelectedItem().toString());
+
+        Map<String,String> map = new HashMap<>();
+        map.put("appointment_type",type);
+        map.put("appointment_mode",mode);
+        map.put("appointment_date",date);
+        map.put("appointment_time",t);
+        map.put("doctor_udi",doctor);
+
+        db.collection("appointments")
+                .add(map)
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if(task.isSuccessful()){
+                            Log.d("Success","Yes");
+                        }else{
+                            Log.d("Failed","sdf");
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("Appointment",e.toString());
+                    }
+                });
     }
 }
