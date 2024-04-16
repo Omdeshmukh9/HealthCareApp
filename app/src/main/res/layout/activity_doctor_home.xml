@@ -36,6 +36,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:id="@+id/navigation_view"
-        app:menu="@menu/menu" />
+        app:menu="@menu/doctormenu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

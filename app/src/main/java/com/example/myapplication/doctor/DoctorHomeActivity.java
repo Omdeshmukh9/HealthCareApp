@@ -54,7 +54,7 @@ public class DoctorHomeActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                if(menuItem.getItemId() == R.id.nav_logout){
+                if(menuItem.getItemId() == R.id.nav_doctor_logout){
                     FirebaseAuth.getInstance().signOut();
                     finish();
                     startActivity(new Intent(DoctorHomeActivity.this, Login.class));
@@ -72,9 +72,9 @@ public class DoctorHomeActivity extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         Class fragmentClass;
         Fragment fragment = null;
-        if(menuItem.getItemId() == R.id.nav_home)
+        if(menuItem.getItemId() == R.id.nav_doctor_home)
             fragmentClass = DoctorAppointmentsFragment.class;
-        else if (menuItem.getItemId() ==  R.id.nav_reminder)
+        else if (menuItem.getItemId() ==  R.id.nav_doctor_appointments)
             fragmentClass = DoctorAppointmentsFragment.class;
         else {
             fragmentClass = DoctorAppointmentsFragment.class;

@@ -12,11 +12,14 @@ import android.view.ViewGroup;
 
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -74,10 +77,15 @@ public class DoctorAppointmentsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_appointments_doctor, container, false);
 
+        Log.d("Appointments","Inside");
         db = ((DoctorHomeActivity)getContext()).getFirebaseFirestore();
         String doctorID = ((DoctorHomeActivity)getContext()).getFirebaseAuth().getCurrentUser().getUid();
+
+        Log.d("Appointments",doctorID);
+        List<String> doctorIds = new ArrayList<>();
+        doctorIds.add(doctorID);
         db.collection("appointments")
-                .whereEqualTo("doctor_uid",doctorID)
+                .whereIn("doctor_uid", doctorIds)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -86,9 +94,16 @@ public class DoctorAppointmentsFragment extends Fragment {
                             List<DocumentSnapshot> documentSnapshotList = task.getResult().getDocuments();
                             for (DocumentSnapshot d:
                                  documentSnapshotList) {
-                                Log.d("Appointments",d.get("appointment_mode").toString());
+                                Log.d("Appointments",d.toString());
                             }
+                            Log.d("Appointments", String.valueOf(documentSnapshotList.size()));
                         }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("Appointments",e.toString());
                     }
                 });
 

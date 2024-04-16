@@ -17,6 +17,7 @@ import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -24,6 +25,9 @@ public class HomeActivity extends AppCompatActivity {
     NavigationView navigationView;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
+
+    FirebaseAuth firebaseAuth;
+    FirebaseFirestore firebaseFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,9 @@ public class HomeActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigation_view);
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
         // pass the Open and Close toggle for the drawer layout listener
         // to toggle the button
@@ -104,6 +111,10 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public FirebaseFirestore getFirebaseFirestore(){
+        return firebaseFirestore;
+    }
 
+    public FirebaseAuth getFirebaseAuth(){return firebaseAuth;}
 
 }

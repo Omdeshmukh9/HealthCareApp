@@ -205,13 +205,15 @@ public class AppointmentBookingFragment extends Fragment {
         String date =dateView.getText().toString();
         String t = time.getText().toString();
         String doctor = doctorMap.get( doctorDropDown.getSelectedItem().toString());
+        String patientId = ((HomeActivity)getContext()).getFirebaseAuth().getUid();
 
         Map<String,String> map = new HashMap<>();
         map.put("appointment_type",type);
         map.put("appointment_mode",mode);
         map.put("appointment_date",date);
         map.put("appointment_time",t);
-        map.put("doctor_udi",doctor);
+        map.put("doctor_uid",doctor);
+        map.put("patient_uid",patientId);
 
         db.collection("appointments")
                 .add(map)
