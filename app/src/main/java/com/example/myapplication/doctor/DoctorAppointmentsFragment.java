@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -70,13 +72,15 @@ public class DoctorAppointmentsFragment extends Fragment {
     }
 
     private FirebaseFirestore db;
-
+    List<DoctorAppointmentItemList> doctorAppointmentItemList = new ArrayList<>();
+    RecyclerView recyclerView;
+    DoctorAppointmentAdapter doctorAppointmentAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_appointments_doctor, container, false);
-
+        recyclerView = view.findViewById(R.id.recyclerView);
         Log.d("Appointments","Inside");
         db = ((DoctorHomeActivity)getContext()).getFirebaseFirestore();
         String doctorID = ((DoctorHomeActivity)getContext()).getFirebaseAuth().getCurrentUser().getUid();
@@ -94,8 +98,18 @@ public class DoctorAppointmentsFragment extends Fragment {
                             List<DocumentSnapshot> documentSnapshotList = task.getResult().getDocuments();
                             for (DocumentSnapshot d:
                                  documentSnapshotList) {
-                                Log.d("Appointments",d.toString());
+                                DoctorAppointmentItemList doctor = new DoctorAppointmentItemList();
+                                doctor.setAppointmentDate(d.get("appointment_date").toString());
+                                doctor.setAppointmentMode(d.get("appointment_mode").toString());
+                                doctor.setAppointmentTime(d.get("appointment_time").toString());
+                                doctor.setAppointmentType(d.get("appointment_type").toString());
+
+                                doctorAppointmentItemList.add(doctor);
                             }
+
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                            doctorAppointmentAdapter = new DoctorAppointmentAdapter(getContext(), doctorAppointmentItemList);
+                            recyclerView.setAdapter(doctorAppointmentAdapter);
                             Log.d("Appointments", String.valueOf(documentSnapshotList.size()));
                         }
                     }
