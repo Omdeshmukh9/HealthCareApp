@@ -3,11 +3,12 @@ package com.example.myapplication.patient;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -24,7 +25,7 @@ public class HomeActivity extends AppCompatActivity {
     public DrawerLayout drawerLayout;
     NavigationView navigationView;
     public ActionBarDrawerToggle actionBarDrawerToggle;
-    Toolbar toolbar;
+    Button yourButton; // Added Button declaration
 
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
@@ -36,8 +37,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(findViewById(R.id.toolbar));
         navigationView = findViewById(R.id.navigation_view);
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
@@ -50,21 +50,20 @@ public class HomeActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
-
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new HomeFragment()).commit();
         }
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                if(menuItem.getItemId() == R.id.nav_logout){
+                if (menuItem.getItemId() == R.id.nav_logout) {
                     FirebaseAuth.getInstance().signOut();
                     finish();
                     startActivity(new Intent(HomeActivity.this, MainActivity.class));
-                }else {
+                } else {
                     selectDrawerItem(menuItem);
                 }
-            return false;
+                return false;
             }
         });
 
@@ -72,16 +71,31 @@ public class HomeActivity extends AppCompatActivity {
 
         // to make the Navigation drawer icon always appear on the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Find the button by its id
+        //yourButton = findViewById(R.id.your_button_id);
+
+        // Set OnClickListener for the button
+        Button skinActivityButton = findViewById(R.id.button_skin_activity);
+        skinActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, SkinActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     public void selectDrawerItem(MenuItem menuItem) {
         Class fragmentClass;
         Fragment fragment = null;
-        if(menuItem.getItemId() == R.id.nav_appointment)
+        if (menuItem.getItemId() == R.id.nav_appointment)
             fragmentClass = AppointmentBookingFragment.class;
-        else if (menuItem.getItemId() ==  R.id.nav_reminder)
+        else if (menuItem.getItemId() == R.id.nav_reminder)
             fragmentClass = ReminderFragment.class;
-        else if (menuItem.getItemId() ==  R.id.nav_home)
+        else if (menuItem.getItemId() == R.id.nav_home)
             fragmentClass = HomeFragment.class;
         else {
             fragmentClass = HomeFragment.class;
@@ -100,7 +114,7 @@ public class HomeActivity extends AppCompatActivity {
         drawerLayout.closeDrawers();
     }
 
-    public void changeFragment(Fragment fragment){
+    public void changeFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
     }
@@ -110,15 +124,17 @@ public class HomeActivity extends AppCompatActivity {
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
 
-            return  true;
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public FirebaseFirestore getFirebaseFirestore(){
+    public FirebaseFirestore getFirebaseFirestore() {
         return firebaseFirestore;
     }
 
-    public FirebaseAuth getFirebaseAuth(){return firebaseAuth;}
+    public FirebaseAuth getFirebaseAuth() {
+        return firebaseAuth;
+    }
 
 }

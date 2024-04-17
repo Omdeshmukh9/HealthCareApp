@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/mCameraButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonTakePhoto"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"/>
+
+    <Button
+        android:id="@+id/mGalleryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonSelectPhoto"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/mCameraButton"
+        android:layout_marginEnd="32dp"/>
+
+    <ImageView
+        android:id="@+id/mPhotoImageView"
+        android:layout_width="350dp"
+        android:layout_height="400dp"
+        android:contentDescription="@string/descriptionImage"
+        android:layout_below="@id/mCameraButton"
+        android:layout_centerHorizontal="true"
+        android:src="@android:color/darker_gray"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/mDetectButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonDiagnose"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/mResultTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/defaultImage"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_below="@id/mPhotoImageView"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"/>
+
+</RelativeLayout>
