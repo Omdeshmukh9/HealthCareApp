@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -87,7 +88,10 @@ public class HomeFragment extends Fragment {
         nearHospital.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ((HomeActivity) getContext()).changeFragment(NearbyHospitalFragment.newInstance());
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=hospitals");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
             }
         });
 
