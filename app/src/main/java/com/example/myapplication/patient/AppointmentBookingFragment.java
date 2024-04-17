@@ -38,6 +38,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -202,28 +203,40 @@ public class AppointmentBookingFragment extends Fragment {
         map.put("appointment_date",date);
         map.put("appointment_time",t);
         map.put("doctor_uid",doctor);
-        map.put("patient_uid",patientId);
 
-        db.collection("appointments")
-                .add(map)
-                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
-                        Class fragmentClass;
-                        if(task.isSuccessful()){
-                            Toast.makeText(getActivity(), "Appointment is Booked", Toast.LENGTH_SHORT).show();
-                            ((HomeActivity)getContext()).changeFragment(HomeFragment.newInstance());
+        db.collection("users_patients")
+                        .document(Objects.requireNonNull(((HomeActivity) getContext()).getFirebaseAuth().getUid()))
+                                .get()
+                                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if(task.isSuccessful()){
+                                                    map.put("patient_name",task.getResult().get("username").toString());
+                                                    db.collection("appointments")
+                                                            .add(map)
+                                                            .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<DocumentReference> task) {
+                                                                    Class fragmentClass;
+                                                                    if(task.isSuccessful()){
+                                                                        Toast.makeText(getActivity(), "Appointment is Booked", Toast.LENGTH_SHORT).show();
+                                                                        ((HomeActivity)getContext()).changeFragment(HomeFragment.newInstance());
 
-                        }else{
-                            Toast.makeText(getActivity(), "Appointment Booking Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("Appointment",e.toString());
-                    }
-                });
+                                                                    }else{
+                                                                        Toast.makeText(getActivity(), "Appointment Booking Failed", Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                }
+                                                            })
+                                                            .addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    Log.d("Appointment",e.toString());
+                                                                }
+                                                            });
+                                                }
+                                            }
+                                        });
+
+
     }
 }

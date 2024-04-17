@@ -28,7 +28,7 @@ public class DoctorAppointmentAdapter extends RecyclerView.Adapter<DoctorAppoint
         return new ViewHolder(view);
     }
 
-    TextView date,time,mode,type;
+    TextView date,time,mode,type,name;
     public class ViewHolder extends RecyclerView.ViewHolder{
         ViewHolder(View itemView) {
             super(itemView);
@@ -36,6 +36,7 @@ public class DoctorAppointmentAdapter extends RecyclerView.Adapter<DoctorAppoint
             time = itemView.findViewById(R.id.appointment_time);
             mode = itemView.findViewById(R.id.appointment_mode);
             type = itemView.findViewById(R.id.appointment_type);
+            name = itemView.findViewById(R.id.appointment_patient_name);
         }
 
     }
@@ -46,6 +47,7 @@ public class DoctorAppointmentAdapter extends RecyclerView.Adapter<DoctorAppoint
     }
 
     void setData(DoctorAppointmentItemList data){
+        name.setText("Patient Name : "+data.patientName);
         date.setText("Date : "+data.appointmentDate);
         time.setText("Time : "+data.appointmentTime);
         mode.setText("Mode : "+data.appointmentMode);

@@ -1,6 +1,7 @@
 package com.example.myapplication.Chat;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -99,19 +100,26 @@ public class ChatActivity extends AppCompatActivity {
         RequestBody body = RequestBody.create(jsonBody.toString(),JSON);
         Request request = new Request.Builder()
                 .url("https://api.openai.com/v1/completions")
-                .header("Authorization","Bearer sk-proj-1NCru9Qhr1xrFYTB2B8jT3BlbkFJ8H0UCjo53earRscahKfJ")
+                .header("Authorization","sk-proj-gclhiQMQ4pjTJjZKlUkQT3BlbkFJ61vG9kKrnxX0YQb4zThh")
                 .post(body)
                 .build();
+
+        Log.d("APi Call","Initiated");
 
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+                Log.d("APi Call Error",e.toString());
                 addResponse("Failed to load response due to "+e.getMessage());
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                Log.d("APi Call",response.toString());
                 if(response.isSuccessful()){
+
+                    Log.d("APi Call Success",response.body().toString());
                     JSONObject  jsonObject = null;
                     try {
                         jsonObject = new JSONObject(response.body().string());

@@ -26,6 +26,27 @@
                 android:src="@drawable/ic_date" />
 
             <com.example.myapplication.patient.Views.RobotoBoldTextView
+                android:id="@+id/appointment_patient_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="Patient Name"
+                android:layout_gravity="center"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_date" />
+
+            <com.example.myapplication.patient.Views.RobotoBoldTextView
                 android:id="@+id/appointment_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

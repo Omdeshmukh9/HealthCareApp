@@ -37,8 +37,6 @@ public class DoctorAppointmentsFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public DoctorAppointmentsFragment() {
         // Required empty public constructor
@@ -48,16 +46,13 @@ public class DoctorAppointmentsFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+
      * @return A new instance of fragment DoctorAppointmentsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DoctorAppointmentsFragment newInstance(String param1, String param2) {
+    public static DoctorAppointmentsFragment newInstance() {
         DoctorAppointmentsFragment fragment = new DoctorAppointmentsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -66,8 +61,6 @@ public class DoctorAppointmentsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -103,8 +96,10 @@ public class DoctorAppointmentsFragment extends Fragment {
                                 doctor.setAppointmentMode(d.get("appointment_mode").toString());
                                 doctor.setAppointmentTime(d.get("appointment_time").toString());
                                 doctor.setAppointmentType(d.get("appointment_type").toString());
-
+                                doctor.setPatientName(d.get("patient_name").toString());
                                 doctorAppointmentItemList.add(doctor);
+
+
                             }
 
                             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

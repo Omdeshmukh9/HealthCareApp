@@ -5,13 +5,12 @@ import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.myapplication.doctor.DoctorAppointmentsFragment;
+import com.example.myapplication.Chat.ChatActivity;
 import com.example.myapplication.patient.AppointmentBookingFragment;
 import com.example.myapplication.patient.HomeActivity;
 import com.example.myapplication.patient.ReminderFragment;
@@ -60,7 +59,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    CardView appointmentBooking, medicineReminder, skinActivity;
+    CardView appointmentBooking, medicineReminder, skinActivity,chat,nearHospital;
 
     View view;
 
@@ -73,6 +72,8 @@ public class HomeFragment extends Fragment {
         appointmentBooking = view.findViewById(R.id.appointmentBooking);
         medicineReminder = view.findViewById(R.id.medicineReminder);
         skinActivity = view.findViewById(R.id.skinActivity);
+        chat = view.findViewById(R.id.chatgpt);
+        nearHospital = view.findViewById(R.id.nearHospital);
 
 
         appointmentBooking.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +81,21 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 ((HomeActivity) getContext()).changeFragment(AppointmentBookingFragment.newInstance());
 
+            }
+        });
+
+        nearHospital.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                ((HomeActivity) getContext()).changeFragment(NearbyHospitalFragment.newInstance());
+            }
+        });
+
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),ChatActivity.class);
+                startActivity(intent);
             }
         });
 
