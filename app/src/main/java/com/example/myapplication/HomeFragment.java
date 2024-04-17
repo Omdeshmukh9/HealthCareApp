@@ -1,13 +1,21 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.myapplication.doctor.DoctorAppointmentsFragment;
+import com.example.myapplication.patient.AppointmentBookingFragment;
+import com.example.myapplication.patient.HomeActivity;
+import com.example.myapplication.patient.ReminderFragment;
+import com.example.myapplication.patient.SkinActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,7 +60,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    CardView appointmentBooking , medicineReminder;
+    CardView appointmentBooking, medicineReminder, skinActivity;
 
     View view;
 
@@ -64,27 +72,35 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         appointmentBooking = view.findViewById(R.id.appointmentBooking);
         medicineReminder = view.findViewById(R.id.medicineReminder);
+        skinActivity = view.findViewById(R.id.skinActivity);
 
 
+        appointmentBooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((HomeActivity) getContext()).changeFragment(AppointmentBookingFragment.newInstance());
 
+            }
+        });
 
+        medicineReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((HomeActivity) getContext()).changeFragment(ReminderFragment.newInstance());
+            }
+        });
 
-//        appointmentBooking.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getContext(), AppointmentBookingFragment.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        medicineReminder.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getContext(), ReminderFragment.class);
-//                startActivity(intent);
-//            }
-//        });
+        skinActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),SkinActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
+
+
     }
+
 }

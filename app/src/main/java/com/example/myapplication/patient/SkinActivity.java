@@ -39,7 +39,7 @@ public class SkinActivity extends AppCompatActivity {
     private final String mModelPath = "model.tflite";
     private final String mLabelPath = "labels.txt";
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

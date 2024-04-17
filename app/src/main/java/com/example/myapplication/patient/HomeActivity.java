@@ -25,11 +25,9 @@ public class HomeActivity extends AppCompatActivity {
     public DrawerLayout drawerLayout;
     NavigationView navigationView;
     public ActionBarDrawerToggle actionBarDrawerToggle;
-    Button yourButton; // Added Button declaration
 
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,19 +69,6 @@ public class HomeActivity extends AppCompatActivity {
 
         // to make the Navigation drawer icon always appear on the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        // Find the button by its id
-        //yourButton = findViewById(R.id.your_button_id);
-
-        // Set OnClickListener for the button
-        Button skinActivityButton = findViewById(R.id.button_skin_activity);
-        skinActivityButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, SkinActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
     }
@@ -128,6 +113,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     public FirebaseFirestore getFirebaseFirestore() {
         return firebaseFirestore;

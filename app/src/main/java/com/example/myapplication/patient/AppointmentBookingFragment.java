@@ -65,16 +65,12 @@ public class AppointmentBookingFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment AppontmentFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AppointmentBookingFragment newInstance(String param1, String param2) {
+    public static AppointmentBookingFragment newInstance() {
         AppointmentBookingFragment fragment = new AppointmentBookingFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -95,7 +91,7 @@ public class AppointmentBookingFragment extends Fragment {
 
     FirebaseFirestore db;
 
-    Button back,submit;
+    Button submit;
     EditText time;
 
     TextView dateView;
@@ -112,7 +108,6 @@ public class AppointmentBookingFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_appointment_booking, container, false);
-        back = view.findViewById(R.id.backButton);
         date = view.findViewById(R.id.pickdate);
         submit = view.findViewById(R.id.submitButton);
         time = view.findViewById(R.id.picktime);
@@ -149,13 +144,6 @@ public class AppointmentBookingFragment extends Fragment {
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

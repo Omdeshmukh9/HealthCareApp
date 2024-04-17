@@ -35,7 +35,7 @@ public class Register extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
-    String[] item = {"Doctor", "Patient"};
+    String[] item = {"Select type","Doctor", "Patient"};
 
     Spinner dropdown;
 

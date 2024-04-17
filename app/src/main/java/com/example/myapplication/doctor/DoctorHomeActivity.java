@@ -12,6 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.myapplication.HomeFragment;
 import com.example.myapplication.Login;
 import com.example.myapplication.R;
 import com.example.myapplication.patient.AppointmentBookingFragment;
@@ -51,6 +52,10 @@ public class DoctorHomeActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new DoctorHomeFragment()).commit();
+        }
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -65,6 +70,8 @@ public class DoctorHomeActivity extends AppCompatActivity {
             }
         });
 
+        navigationView.getMenu().getItem(0).setChecked(true);
+
         // to make the Navigation drawer icon always appear on the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -73,7 +80,7 @@ public class DoctorHomeActivity extends AppCompatActivity {
         Class fragmentClass;
         Fragment fragment = null;
         if(menuItem.getItemId() == R.id.nav_doctor_home)
-            fragmentClass = DoctorAppointmentsFragment.class;
+            fragmentClass = DoctorHomeFragment.class;
         else if (menuItem.getItemId() ==  R.id.nav_doctor_appointments)
             fragmentClass = DoctorAppointmentsFragment.class;
         else {
@@ -84,15 +91,19 @@ public class DoctorHomeActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
-
+        changeFragment(fragment);
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
         // Set action bar title
         setTitle(menuItem.getTitle());
         // Close the navigation drawer
         drawerLayout.closeDrawers();
+    }
+
+
+    public void changeFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

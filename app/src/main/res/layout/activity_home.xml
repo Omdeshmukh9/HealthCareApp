@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background"
+    android:backgroundTint="#11000000"
+    android:backgroundTintMode="src_over"
     android:id="@+id/my_drawer_layout">
 
 
@@ -27,14 +29,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/button_skin_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Go to Skin Activity"
-                android:layout_marginTop="16dp"
-                android:layout_centerHorizontal="true"/>
 
         </FrameLayout>
 

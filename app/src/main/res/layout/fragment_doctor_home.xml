@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeFragment">
-
+    tools:context=".doctor.DoctorHomeFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -23,11 +22,10 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/appointmentBooking"
+                android:id="@+id/Appointments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginVertical="5dp"
                 android:layout_marginHorizontal="10dp"
                 app:cardCornerRadius="20dp"
                 android:elevation="10dp">
@@ -38,19 +36,19 @@
                     android:layout_gravity="center"
                     android:orientation="vertical">
 
-                <ImageView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/appointment_icon"/>
+                    <ImageView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/appointment_icon"/>
 
-                <com.example.myapplication.patient.Views.RobotoBoldTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="9dp"
-                    android:gravity="center"
-                    android:text="Appointment Booking"/>
+                    <com.example.myapplication.patient.Views.RobotoBoldTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="9dp"
+                        android:gravity="center"
+                        android:text="Appointments"/>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -58,11 +56,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/medicineReminder"
+                android:id="@+id/patientReviews"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginVertical="5dp"
                 android:layout_marginHorizontal="10dp"
                 android:background="@drawable/cardbackground"
                 app:cardCornerRadius="20dp"
@@ -86,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:padding="9dp"
                         android:gravity="center"
-                        android:text="Medicine Reminder"/>
+                        android:text="Patient Reviews"/>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -108,8 +105,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginVertical="5dp"
-                android:backgroundTintMode="src_atop"
                 android:layout_marginHorizontal="10dp"
                 app:cardCornerRadius="20dp"
                 android:elevation="10dp">
@@ -121,18 +116,18 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:layout_marginTop="10dp"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/waterreminder" />
+                        android:src="@drawable/icon_water"/>
 
                     <com.example.myapplication.patient.Views.RobotoBoldTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:padding="9dp"
-                        android:text="Water Reminder" />
+                        android:gravity="center"
+                        android:text="Water Reminder"/>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -140,11 +135,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/skinActivity"
+                android:id="@+id/Water"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginVertical="5dp"
                 android:layout_marginHorizontal="10dp"
                 android:background="@drawable/cardbackground"
                 app:cardCornerRadius="20dp"
@@ -168,7 +162,7 @@
                         android:layout_height="wrap_content"
                         android:padding="9dp"
                         android:gravity="center"
-                        android:text="Skin"/>
+                        android:text="Weight Records"/>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -179,13 +173,23 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_bg">
+
+        </ImageView>
 
 
 
 
 
-
-    <!-- TODO: Update blank fragment layout -->
+        <!-- TODO: Update blank fragment layout -->
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
