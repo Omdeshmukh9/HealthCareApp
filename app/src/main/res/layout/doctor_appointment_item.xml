@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
@@ -23,19 +23,28 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_date" />
+                android:src="@drawable/ig_person" />
 
             <com.example.myapplication.patient.Views.RobotoBoldTextView
                 android:id="@+id/appointment_patient_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
                 android:text="Patient Name"
-                android:layout_gravity="center"
                 android:textColor="@color/black" />
 
         </LinearLayout>
 
+        <!-- Add circular buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <!-- Appointment Date -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,13 +59,14 @@
                 android:id="@+id/appointment_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
                 android:text="Date"
-                android:layout_gravity="center"
                 android:textColor="@color/black" />
 
         </LinearLayout>
 
+        <!-- Appointment Time -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,13 +81,14 @@
                 android:id="@+id/appointment_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
                 android:text="Time"
-                android:layout_gravity="center"
                 android:textColor="@color/black" />
 
         </LinearLayout>
 
+        <!-- Appointment Mode -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -92,33 +103,35 @@
                 android:id="@+id/appointment_mode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
                 android:text="Mode"
-                android:layout_gravity="center"
                 android:textColor="@color/black" />
 
         </LinearLayout>
 
+        <!-- Appointment Type -->
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_time" />
-
-        <com.example.myapplication.patient.Views.RobotoBoldTextView
-            android:id="@+id/appointment_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:text="Type"
-            android:layout_gravity="center"
-            android:textColor="@color/black" />
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_time" />
+
+            <com.example.myapplication.patient.Views.RobotoBoldTextView
+                android:id="@+id/appointment_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:text="Type"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

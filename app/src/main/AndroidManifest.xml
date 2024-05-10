@@ -6,7 +6,23 @@
 
     <!-- Add camera permission -->
     <uses-feature android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-feature android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
@@ -22,10 +38,13 @@
         <!-- Declare LoginActivity -->
         <activity android:name=".Login" />
         <activity android:name=".Register"/>
+        <activity android:name=".FallDetection.FallActivity"/>
         <activity android:name=".doctor.DoctorHomeActivity" />
         <activity android:name=".Chat.ChatActivity" />
         <activity android:name=".patient.HomeActivity" />
         <activity android:name=".patient.SkinActivity"/>
+        <activity android:name=".VideoChat.callActivity"/>
+        <activity android:name=".VideoChat.DoctorListActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -35,5 +54,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".FallDetection.Examples"
+            android:label="@string/title_activity_examples"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".FallDetection.Setting"
+            android:label="@string/title_activity_setting"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.myapplication.FallDetection.Setting" />
+        </activity>
+        <activity
+            android:name=".FallDetection.FallTest"
+            android:label="@string/title_activity_fall_test"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 </manifest>
