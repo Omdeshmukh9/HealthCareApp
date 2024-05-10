@@ -44,7 +44,6 @@
         <activity android:name=".patient.HomeActivity" />
         <activity android:name=".patient.SkinActivity"/>
         <activity android:name=".VideoChat.callActivity"/>
-        <activity android:name=".VideoChat.DoctorListActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
