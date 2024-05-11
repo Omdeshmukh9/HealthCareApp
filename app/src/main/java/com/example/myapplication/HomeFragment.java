@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    CardView appointmentBooking, medicineReminder, skinActivity, chat, nearHospital;
+    CardView appointmentBooking, medicineReminder, skinActivity, chat, nearHospital , video_call;
 
     View view;
 
@@ -77,6 +77,7 @@ public class HomeFragment extends Fragment {
         skinActivity = view.findViewById(R.id.skinActivity);
         chat = view.findViewById(R.id.chatgpt);
         nearHospital = view.findViewById(R.id.nearHospital);
+        video_call = view.findViewById(R.id.video_call);
 
 
         appointmentBooking.setOnClickListener(new View.OnClickListener() {
@@ -101,11 +102,18 @@ public class HomeFragment extends Fragment {
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), callActivity.class);
+                Intent intent = new Intent(getContext(), ChatActivity.class);
                 startActivity(intent);
             }
         });
 
+        video_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), callActivity.class);
+                startActivity(intent);
+            }
+        });
         medicineReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
