@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.myapplication.Chat.ChatActivity;
+import com.example.myapplication.VideoChat.callActivity;
 import com.example.myapplication.patient.AppointmentBookingFragment;
 import com.example.myapplication.patient.HomeActivity;
 import com.example.myapplication.patient.ReminderFragment;
@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    CardView appointmentBooking, medicineReminder, skinActivity,chat,nearHospital;
+    CardView appointmentBooking, medicineReminder, skinActivity, chat, nearHospital;
 
     View view;
 
@@ -85,6 +85,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
         nearHospital.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +99,7 @@ public class HomeFragment extends Fragment {
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),ChatActivity.class);
+                Intent intent = new Intent(getContext(), callActivity.class);
                 startActivity(intent);
             }
         });
@@ -113,14 +114,11 @@ public class HomeFragment extends Fragment {
         skinActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),SkinActivity.class);
+                Intent intent = new Intent(getContext(), SkinActivity.class);
                 startActivity(intent);
             }
         });
 
         return view;
-
-
     }
-
 }

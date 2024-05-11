@@ -90,7 +90,7 @@ public class DoctorAppointmentsFragment extends Fragment {
                         if(task.isSuccessful()){
                             List<DocumentSnapshot> documentSnapshotList = task.getResult().getDocuments();
                             for (DocumentSnapshot d:
-                                 documentSnapshotList) {
+                                    documentSnapshotList) {
                                 DoctorAppointmentItemList doctor = new DoctorAppointmentItemList();
                                 doctor.setAppointmentDate(d.get("appointment_date").toString());
                                 doctor.setAppointmentMode(d.get("appointment_mode").toString());
