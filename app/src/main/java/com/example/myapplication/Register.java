@@ -37,9 +37,13 @@ public class Register extends AppCompatActivity {
 
     String[] item = {"Select type","Doctor", "Patient"};
 
-    Spinner dropdown;
+    String[] itemGender = {"Gender","Male","Female"};
 
-    ArrayAdapter<String> adapterItems;
+
+
+    Spinner dropdown,genderDrop;
+
+    ArrayAdapter<String> adapterItems,adapterGenderItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +60,11 @@ public class Register extends AppCompatActivity {
         buttonRegister = findViewById(R.id.buttonRegister);
         login = findViewById(R.id.buttonLogin);
 
+        genderDrop = findViewById(R.id.gender);
+
         dropdown = findViewById(R.id.userCategory);
         adapterItems = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,item);
+        adapterGenderItems = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,itemGender);
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -72,8 +79,21 @@ public class Register extends AppCompatActivity {
         });
 
 
-
         dropdown.setAdapter(adapterItems);
+        genderDrop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        genderDrop.setAdapter(adapterGenderItems);
 
 
 
