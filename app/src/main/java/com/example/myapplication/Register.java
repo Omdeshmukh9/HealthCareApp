@@ -163,6 +163,7 @@ public class Register extends AppCompatActivity {
                                     map.put("username",editTextUsername.getText().toString().trim());
                                     map.put("email",email);
                                     map.put("doctor_uid",mAuth.getUid());
+                                    map.put("gender",genderDrop.toString());
                                     uploadData(map);
                                 } else {
                                     Toast.makeText(Register.this, "Failed to register! Please try again later", Toast.LENGTH_LONG).show();

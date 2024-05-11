@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+//import com.example.myapplication.VideoChat.callActivity;
+import com.example.myapplication.Chat.ChatActivity;
 import com.example.myapplication.VideoChat.callActivity;
 import com.example.myapplication.patient.AppointmentBookingFragment;
 import com.example.myapplication.patient.HomeActivity;

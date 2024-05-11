@@ -9,7 +9,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.VideoChat.callActivity;
+//import com.example.myapplication.VideoChat.callActivity;
 import com.example.myapplication.doctor.DoctorHomeActivity;
 import com.example.myapplication.patient.HomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;

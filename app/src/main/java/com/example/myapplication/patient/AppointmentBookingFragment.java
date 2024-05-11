@@ -43,7 +43,7 @@ public class AppointmentBookingFragment extends Fragment {
     FirebaseFirestore db;
 
     Button submit;
-    EditText time;
+    EditText time,name;
 
     TextView dateView;
     RadioGroup appointment_type, appointment_mode;
@@ -90,6 +90,8 @@ public class AppointmentBookingFragment extends Fragment {
         doctorDropDown = view.findViewById(R.id.select_doctor_dropdown);
         appointment_type = view.findViewById(R.id.rd1);
         appointment_mode = view.findViewById(R.id.rd2);
+
+        name = view.findViewById(R.id.patient_name);
 
         date.setMinDate(myCalendar.getTimeInMillis());
 
@@ -173,6 +175,7 @@ public class AppointmentBookingFragment extends Fragment {
         map.put("appointment_mode",mode);
         map.put("appointment_date",date);
         map.put("appointment_time",t);
+        map.put("patient_name",name.toString());
         map.put("doctor_uid",doctor);
         map.put("patient_email", patientEmail);
 
