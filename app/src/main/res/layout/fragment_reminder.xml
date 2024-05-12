@@ -13,34 +13,34 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/four_dp"
-        app:cardElevation="@dimen/two_dp"
-        app:cardUseCompatPadding="true"
-        app:contentPadding="@dimen/sixteen_dp">
-
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:cardCornerRadius="@dimen/four_dp"
+            app:cardElevation="@dimen/two_dp"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="@dimen/sixteen_dp">
 
-            <com.example.myapplication.patient.Views.RobotoBoldTextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title_medicine_name"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_medium" />
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/edit_med_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_enter_med_name" />
+                <com.example.myapplication.patient.Views.RobotoBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_medicine_name"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_medium" />
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                <EditText
+                    android:id="@+id/edit_med_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_enter_med_name" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -99,7 +99,6 @@
                         android:gravity="center"
                         android:text="M" />
 
-
                     <com.example.myapplication.patient.Views.DayViewCheckBox
                         android:id="@+id/dv_tuesday"
                         android:layout_width="40dp"
@@ -143,7 +142,6 @@
                         android:button="@null"
                         android:gravity="center"
                         android:text="F" />
-
 
                     <com.example.myapplication.patient.Views.DayViewCheckBox
                         android:id="@+id/dv_saturday"
@@ -199,31 +197,20 @@
                         android:textColor="#474343"
                         tools:text="23:30" />
 
-                    <EditText
-                        android:id="@+id/tv_dose_quantity"
+                    <TimePicker
+                        android:id="@+id/time_picker"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/drawable_underline"
-                        android:gravity="center"
-                        android:padding="@dimen/four_dp"
-                        android:text="1.0" />
+                        android:layout_height="wrap_content" />
 
-
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spinner_dose_units"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="1"
-                        android:entries="@array/medications_shape_array" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <Button
+            android:id="@+id/button_set_alarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Set Alarm" />
     </LinearLayout>
 
 </FrameLayout>

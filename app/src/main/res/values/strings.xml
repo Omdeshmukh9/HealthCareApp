@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HealthAstro</string>
+    <string name="app_name">Medicine Time</string>
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -11,11 +11,40 @@
     <string name="medicine_days">Medicine Days</string>
     <string name="every_day">Every day</string>
     <string name="title_reminder">Reminder</string>
-
+    <string name="title_activity_setting">SETTINGS</string>
+    <string name="title_activity_fall_test">Fall Testing</string>
 
     <string name="buttonSelectPhoto">Select Photo</string>
     <string name="buttonTakePhoto">Start Camera</string>
     <string name="buttonDiagnose">Detect</string>
     <string name="defaultImage">Default image set now...</string>
     <string name="descriptionImage">View for displaying image</string>
+
+    <string name="start">start</string>
+    <string name="stop">stop</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="local_service_started">22</string>
+    <string name="action_contacts">Contacts</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_contacts">ContactsActivity</string>
+    <string name="emergency_contacts">EmergencyContacts</string>
+    <string name="title_treatment_deadline">Treatment deadline</string>
+    <string name="title_continuous_use">Continuous use</string>
+    <string name="new_medicine">NEW MEDICINE</string>
+    <string name="no_medicine_added">No Medicine Added</string>
+    <string name="loading_tasks_error">Error while loading medicineAlarms</string>
+    <string name="successfully_saved_me_message">Medicine Added Successfully</string>
+    <string name="successfully_deleted_message">Medicine deleted Successfully</string>
+    <string name="reminder_message">It\'s Time to take your medicine</string>
+    <string name="ignored">IGNORED</string>
+    <string name="taken">TAKEN</string>
+    <string name="all">ALL</string>
+    <string name="menu_filter">Filter</string>
+    <string name="all_label">All Medicines</string>
+    <string name="ignore_label">Medicines Ignored</string>
+    <string name="taken_label">Medicine Taken</string>
+    <string name="no_history">No History Found</string>
+    <string name="no_taken_med_history">You have not taken any medicine</string>
+    <string name="no_ignored_history">Well Done</string>
+    <string name="menu_stats">Monthly Report</string>
 </resources>

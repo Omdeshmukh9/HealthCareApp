@@ -1,17 +1,20 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.myapplication.doctor.DoctorAppointmentsFragment;
+//import com.example.myapplication.VideoChat.callActivity;
+
+import com.example.myapplication.VideoChat.callActivity;
+
 import com.example.myapplication.patient.AppointmentBookingFragment;
 import com.example.myapplication.patient.HomeActivity;
 import com.example.myapplication.patient.ReminderFragment;
@@ -60,7 +63,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    CardView appointmentBooking, medicineReminder, skinActivity;
+    CardView appointmentBooking, medicineReminder, skinActivity, chat, nearHospital , video_call;
 
     View view;
 
@@ -73,6 +76,9 @@ public class HomeFragment extends Fragment {
         appointmentBooking = view.findViewById(R.id.appointmentBooking);
         medicineReminder = view.findViewById(R.id.medicineReminder);
         skinActivity = view.findViewById(R.id.skinActivity);
+        chat = view.findViewById(R.id.chatgpt);
+        nearHospital = view.findViewById(R.id.nearHospital);
+        video_call = view.findViewById(R.id.video_call);
 
 
         appointmentBooking.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +89,32 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
+        nearHospital.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=hospitals");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
+
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), com.example.myapplication.Chat.chat.class);
+                startActivity(intent);
+            }
+        });
+
+        video_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), callActivity.class);
+                startActivity(intent);
+            }
+        });
         medicineReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,14 +125,11 @@ public class HomeFragment extends Fragment {
         skinActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),SkinActivity.class);
+                Intent intent = new Intent(getContext(), SkinActivity.class);
                 startActivity(intent);
             }
         });
 
         return view;
-
-
     }
-
 }

@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".FallDetectionActivity">
+
+    <!-- EditText fields for emergency contacts -->
+    <EditText
+        android:id="@+id/editTextEmergency1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Emergency Contact 1"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/editTextEmergency2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Emergency Contact 2"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/editTextEmergency3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Emergency Contact 3"
+        android:inputType="phone" />
+
+    <!-- Button to save emergency contacts and start fall detection -->
+    <Button
+        android:id="@+id/btnSaveAndStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onSaveAndStartClicked"
+        android:text="Save Emergency Contacts and Start Fall Detection" />
+
+</LinearLayout>

@@ -1,7 +1,6 @@
 package com.example.myapplication.patient;
 
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,7 +22,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.myapplication.HomeFragment;
-import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -38,61 +36,14 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AppointmentBookingFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AppointmentBookingFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-
-    public AppointmentBookingFragment() {
-
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment AppontmentFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AppointmentBookingFragment newInstance() {
-        AppointmentBookingFragment fragment = new AppointmentBookingFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-
-        }
-
-        db = FirebaseFirestore.getInstance();
-        doctorMap = new HashMap<>();
-    }
 
     FirebaseFirestore db;
 
     Button submit;
-    EditText time;
+    EditText time,name;
 
     TextView dateView;
     RadioGroup appointment_type, appointment_mode;
@@ -103,10 +54,34 @@ public class AppointmentBookingFragment extends Fragment {
     Spinner doctorDropDown;
 
     ArrayAdapter<String> doctorArrayAdapter;
+
+    Map<String,String> doctorMap;
+
+    public AppointmentBookingFragment() {
+        // Required empty public constructor
+    }
+
+    public static AppointmentBookingFragment newInstance() {
+        AppointmentBookingFragment fragment = new AppointmentBookingFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            // handle arguments if any
+        }
+
+        db = FirebaseFirestore.getInstance();
+        doctorMap = new HashMap<>();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_appointment_booking, container, false);
         date = view.findViewById(R.id.pickdate);
         submit = view.findViewById(R.id.submitButton);
@@ -116,6 +91,7 @@ public class AppointmentBookingFragment extends Fragment {
         appointment_type = view.findViewById(R.id.rd1);
         appointment_mode = view.findViewById(R.id.rd2);
 
+        name = view.findViewById(R.id.patient_name);
 
         date.setMinDate(myCalendar.getTimeInMillis());
 
@@ -138,12 +114,11 @@ public class AppointmentBookingFragment extends Fragment {
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         time.setText( selectedHour + ":" + selectedMinute);
                     }
-                }, hour, minute, true);//Yes 24 hour time
+                }, hour, minute, true);
                 mTimePicker.setTitle("Select Time");
                 mTimePicker.show();
             }
         });
-
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,11 +129,9 @@ public class AppointmentBookingFragment extends Fragment {
 
         getDoctorList();
 
-
         return view;
     }
 
-    Map<String,String> doctorMap;
     void getDoctorList(){
         List<String> items = new ArrayList<>();
         db.collection("users_doctors")
@@ -167,10 +140,9 @@ public class AppointmentBookingFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
-                           List<DocumentSnapshot> documentSnapshotList = task.getResult().getDocuments();
-                           doctorMap.clear();
-                            for (DocumentSnapshot d:
-                                 documentSnapshotList) {
+                            List<DocumentSnapshot> documentSnapshotList = task.getResult().getDocuments();
+                            doctorMap.clear();
+                            for (DocumentSnapshot d: documentSnapshotList) {
                                 doctorMap.put("Dr. "+d.get("username").toString(),d.getId());
                                 items.add("Dr. "+d.get("username").toString());
                             }
@@ -185,44 +157,57 @@ public class AppointmentBookingFragment extends Fragment {
 
                     }
                 });
-
     }
 
     void uploadData(){
         String type = ((RadioButton)view.findViewById(appointment_type.getCheckedRadioButtonId())).getText().toString();
         String mode = ((RadioButton)view.findViewById(appointment_mode.getCheckedRadioButtonId())).getText().toString();
-        String date =dateView.getText().toString();
+        String date = dateView.getText().toString();
         String t = time.getText().toString();
-        String doctor = doctorMap.get( doctorDropDown.getSelectedItem().toString());
+        String doctor = doctorMap.get(doctorDropDown.getSelectedItem().toString());
         String patientId = ((HomeActivity)getContext()).getFirebaseAuth().getUid();
+
+        // Get logged-in user's email
+        String patientEmail = ((HomeActivity) getContext()).getFirebaseAuth().getCurrentUser().getEmail();
 
         Map<String,String> map = new HashMap<>();
         map.put("appointment_type",type);
         map.put("appointment_mode",mode);
         map.put("appointment_date",date);
         map.put("appointment_time",t);
+        map.put("patient_name",name.toString());
         map.put("doctor_uid",doctor);
-        map.put("patient_uid",patientId);
+        map.put("patient_email", patientEmail);
 
-        db.collection("appointments")
-                .add(map)
-                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+        db.collection("users_patients")
+                .document(Objects.requireNonNull(patientId))
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
-                        Class fragmentClass;
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(getActivity(), "Appointment is Booked", Toast.LENGTH_SHORT).show();
-                            ((HomeActivity)getContext()).changeFragment(HomeFragment.newInstance());
-
-                        }else{
-                            Toast.makeText(getActivity(), "Appointment Booking Failed", Toast.LENGTH_SHORT).show();
+                            map.put("patient_name",task.getResult().get("username").toString());
+                            db.collection("appointments")
+                                    .add(map)
+                                    .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentReference> task) {
+                                            Class fragmentClass;
+                                            if(task.isSuccessful()){
+                                                Toast.makeText(getActivity(), "Appointment is Booked", Toast.LENGTH_SHORT).show();
+                                                ((HomeActivity)getContext()).changeFragment(HomeFragment.newInstance());
+                                            }else{
+                                                Toast.makeText(getActivity(), "Appointment Booking Failed", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.d("Appointment",e.toString());
+                                        }
+                                    });
                         }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("Appointment",e.toString());
                     }
                 });
     }

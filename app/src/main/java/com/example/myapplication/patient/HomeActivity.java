@@ -5,9 +5,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -31,6 +31,8 @@ public class HomeActivity extends AppCompatActivity {
     NavigationView navigationView;
     public ActionBarDrawerToggle actionBarDrawerToggle;
 
+    Button chatgpt;
+
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
     @Override
@@ -45,6 +47,8 @@ public class HomeActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
 
+//        chatgpt = findViewById(R.id.button_skin_chat);
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -52,6 +56,16 @@ public class HomeActivity extends AppCompatActivity {
         // to toggle the button
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+
+
+
+//        chatgpt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(HomeActivity.this,ChatActivity.class);
+//            }
+//        });
+
 
 
         if (savedInstanceState == null) {

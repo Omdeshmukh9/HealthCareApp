@@ -1,7 +1,7 @@
 package com.example.myapplication.doctor;
 
 public class DoctorAppointmentItemList {
-    String appointmentDate,appointmentTime,appointmentType,appointmentMode;
+    String appointmentDate,appointmentTime,appointmentType,appointmentMode,patientName;
 
     public String getAppointmentDate() {
         return appointmentDate;
@@ -33,5 +33,13 @@ public class DoctorAppointmentItemList {
 
     public void setAppointmentMode(String appointmentMode) {
         this.appointmentMode = appointmentMode;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
     }
 }
