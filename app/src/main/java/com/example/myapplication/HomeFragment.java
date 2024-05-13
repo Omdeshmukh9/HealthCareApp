@@ -19,6 +19,7 @@ import com.example.myapplication.patient.AppointmentBookingFragment;
 import com.example.myapplication.patient.HomeActivity;
 import com.example.myapplication.patient.ReminderFragment;
 import com.example.myapplication.patient.SkinActivity;
+import com.example.myapplication.patient.WaterReminderFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,7 +64,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    CardView appointmentBooking, medicineReminder, skinActivity, chat, nearHospital , video_call;
+    CardView appointmentBooking, medicineReminder,waterReminder, skinActivity, chat, nearHospital , video_call;
 
     View view;
 
@@ -75,6 +76,7 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         appointmentBooking = view.findViewById(R.id.appointmentBooking);
         medicineReminder = view.findViewById(R.id.medicineReminder);
+        waterReminder = view.findViewById(R.id.waterReminder);
         skinActivity = view.findViewById(R.id.skinActivity);
         chat = view.findViewById(R.id.chatgpt);
         nearHospital = view.findViewById(R.id.nearHospital);
@@ -119,6 +121,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((HomeActivity) getContext()).changeFragment(ReminderFragment.newInstance());
+            }
+        });
+
+        waterReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((HomeActivity) getContext()).changeFragment(WaterReminderFragment.newInstance());
             }
         });
 

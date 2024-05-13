@@ -245,7 +245,7 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/icon_hospital"/>
+                        android:src="@drawable/icon_location"/>
 
                     <com.example.myapplication.patient.Views.RobotoBoldTextView
                         android:layout_width="match_parent"
@@ -377,7 +377,7 @@
                         android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/videoicon" />
+                        android:src="@drawable/icon_videocall" />
 
                     <com.example.myapplication.patient.Views.RobotoBoldTextView
                         android:layout_width="match_parent"
