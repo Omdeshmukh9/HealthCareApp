@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background"
+    tools:context=".patient.WaterReminderFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight_dp"
+            app:cardCornerRadius="@dimen/four_dp"
+            app:cardElevation="@dimen/two_dp"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="@dimen/sixteen_dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.example.myapplication.patient.Views.RobotoBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Reminder Days"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_medium" />
+
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/every_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/every_day" />
+
+                <LinearLayout
+                    android:id="@+id/checkbox_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="7">
+
+                    <com.example.myapplication.patient.Views.DayViewCheckBox
+                        android:id="@+id/dv_sunday"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_day_view"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="S" />
+
+                    <com.example.myapplication.patient.Views.DayViewCheckBox
+                        android:id="@+id/dv_monday"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_day_view"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="M" />
+
+                    <com.example.myapplication.patient.Views.DayViewCheckBox
+                        android:id="@+id/dv_tuesday"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_day_view"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="T" />
+
+                    <com.example.myapplication.patient.Views.DayViewCheckBox
+                        android:id="@+id/dv_wednesday"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_day_view"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="W" />
+
+                    <com.example.myapplication.patient.Views.DayViewCheckBox
+                        android:id="@+id/dv_thursday"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_day_view"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="T" />
+
+                    <com.example.myapplication.patient.Views.DayViewCheckBox
+                        android:id="@+id/dv_friday"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_day_view"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="F" />
+
+                    <com.example.myapplication.patient.Views.DayViewCheckBox
+                        android:id="@+id/dv_saturday"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_day_view"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="S" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight_dp"
+            app:cardCornerRadius="@dimen/four_dp"
+            app:cardElevation="@dimen/two_dp"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="@dimen/sixteen_dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.example.myapplication.patient.Views.RobotoBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Time Interval"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_medium" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/hours"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        />
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/button_set_alarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Set Timer" />
+    </LinearLayout>
+
+</FrameLayout>
