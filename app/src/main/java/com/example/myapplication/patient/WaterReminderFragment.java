@@ -43,7 +43,7 @@ public class WaterReminderFragment extends Fragment {
         setAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((HomeActivity)getContext()).addNotification(1000);
+                ((HomeActivity)getContext()).addNotification(6000);
             }
         });
 
