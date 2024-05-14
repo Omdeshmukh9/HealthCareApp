@@ -20,11 +20,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.myapplication.AlarmReceiverWater;
 import com.example.myapplication.HomeFragment;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.NotificationView;
 import com.example.myapplication.R;
-import com.example.myapplication.medicine.AlarmReceiver;
+
+import com.example.myapplication.reminders.AlarmReceiver;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -160,7 +162,7 @@ public class HomeActivity extends AppCompatActivity {
     public void addNotification(int interval) {
         createNotificationChannel();
 
-        Intent notifyIntent = new Intent(HomeActivity.this, AlarmReceiver.class);
+        Intent notifyIntent = new Intent(HomeActivity.this, AlarmReceiverWater.class);
         PendingIntent notifyPendingIntent = PendingIntent.getBroadcast(
                 this,
                 101,

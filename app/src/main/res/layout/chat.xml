@@ -41,13 +41,25 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Type your message here"
-            android:inputType="text" />
+            android:padding="16dp"
+            android:layout_toLeftOf="@id/buttonSend"
+            android:background="@drawable/rounded_corner"
+            android:inputType="text"
+            />
 
-        <Button
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:id="@+id/buttonSend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Send" />
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="10dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_baseline_send_24"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="onYesButtonClicked"
+            />
+
 
     </LinearLayout>
 

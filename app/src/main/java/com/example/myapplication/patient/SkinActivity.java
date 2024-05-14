@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,8 +27,8 @@ import java.io.IOException;
 public class SkinActivity extends AppCompatActivity {
     private Classifier mClassifier;
     private Bitmap mBitmap;
-    private Button mCameraButton;
-    private Button mGalleryButton;
+    private ImageButton mCameraButton;
+    private ImageButton mGalleryButton;
     private Button mDetectButton;
     private ImageView mPhotoImageView;
     private TextView mResultTextView;
