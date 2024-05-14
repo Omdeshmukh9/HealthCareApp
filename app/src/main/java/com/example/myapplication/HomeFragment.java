@@ -7,9 +7,11 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 //import com.example.myapplication.VideoChat.callActivity;
 
@@ -21,6 +23,7 @@ import com.example.myapplication.patient.ReminderFragment;
 import com.example.myapplication.patient.SkinActivity;
 import com.example.myapplication.patient.WaterReminderFragment;
 import com.example.myapplication.reminders.Medicine;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,6 +71,7 @@ public class HomeFragment extends Fragment {
     CardView appointmentBooking, medicineReminder,waterReminder, skinActivity, chat, nearHospital , video_call;
 
     View view;
+    TextView homeUsernameDisplay;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,6 +86,9 @@ public class HomeFragment extends Fragment {
         chat = view.findViewById(R.id.chatgpt);
         nearHospital = view.findViewById(R.id.nearHospital);
         video_call = view.findViewById(R.id.video_call);
+        homeUsernameDisplay = view.findViewById(R.id.home_username_display);
+
+        homeUsernameDisplay.setText ("Welcome "+((HomeActivity)getContext()).getFirebaseAuth().getCurrentUser().getDisplayName());
 
 
         appointmentBooking.setOnClickListener(new View.OnClickListener() {

@@ -48,11 +48,12 @@
                     <com.example.myapplication.patient.Views.RobotoBoldTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textSize="20sp"
+                        android:id="@+id/home_username_display"
                         android:layout_marginHorizontal="40dp"
                         android:layout_gravity="center"
-                        android:text="Wellcome" />
+                        android:text="Welcome" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -347,7 +348,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="9dp"
-                        android:text="Emergency calling" />
+                        android:text="Emergency Calling" />
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>

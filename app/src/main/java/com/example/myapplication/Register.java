@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -160,10 +161,13 @@ public class Register extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Map<String,String> map = new HashMap<>();
-                                    map.put("username",editTextUsername.getText().toString().trim());
+                                    String username = editTextUsername.getText().toString().trim();
+                                    map.put("username",username);
                                     map.put("email",email);
                                     map.put("doctor_uid",mAuth.getUid());
-                                    map.put("gender",genderDrop.toString());
+                                    map.put("gender",genderDrop.getSelectedItem().toString());
+                                    UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
+                                    mAuth.getCurrentUser().updateProfile(userProfileChangeRequest);
                                     uploadData(map);
                                 } else {
                                     Toast.makeText(Register.this, "Failed to register! Please try again later", Toast.LENGTH_LONG).show();

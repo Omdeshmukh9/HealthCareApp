@@ -69,5 +69,6 @@
 
 
        <receiver android:name=".reminders.AlarmReceiver"/>
+        <receiver android:name=".AlarmReceiverWater"/>
     </application>
 </manifest>
