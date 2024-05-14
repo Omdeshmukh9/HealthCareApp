@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#F3EBF6</color>
-    <color name="cardBackground">#989798</color>
+    <color name="cardBackground">#FFFFFF</color>
     <color name="colorAccent">#03a9f4</color>
     <color name="colorPrimary">#2196f3</color>
     <color name="colorPrimaryDark">#1976d2</color>

@@ -71,7 +71,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/patient_name"
+                    android:id="@+id/patient_age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

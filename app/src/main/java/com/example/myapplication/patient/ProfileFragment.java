@@ -1,15 +1,25 @@
 package com.example.myapplication.patient;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.PieModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,8 +34,6 @@ public class ProfileFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -45,6 +53,7 @@ public class ProfileFragment extends Fragment {
     }
 
     TextView stepsCount , username, email;
+    PieChart pieChart;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,6 +63,40 @@ public class ProfileFragment extends Fragment {
         stepsCount = view.findViewById(R.id.steps_count);
         username = view.findViewById(R.id.profile_username_display);
         email = view.findViewById(R.id.profile_email_display);
+        pieChart = view.findViewById(R.id.piechart);
+
+        ((HomeActivity)getContext()).getFirebaseFirestore().collection("users_patients")
+                .document(((HomeActivity)getContext()).getFirebaseAuth().getCurrentUser().getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            stepsCount.setText(task.getResult().get("steps_count").toString());
+                            username.setText(task.getResult().get("username").toString());
+                            email.setText(task.getResult().get("email").toString());
+                            pieChart.addPieSlice(new PieModel(
+                                    "Medicines Taken",
+                                    10,
+                                    Color.parseColor("#66BB6A")));
+                            pieChart.addPieSlice(new PieModel(
+                                    "Medicines Neglected",
+                                    4,
+                                    Color.parseColor("#EF5350")));
+
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+
+
+
         return view;
     }
 }
