@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -22,16 +21,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.myapplication.AlarmReceiverWater;
-import com.example.myapplication.Chat.chat;
 import com.example.myapplication.HomeFragment;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.NotificationView;
 import com.example.myapplication.R;
 
 import com.example.myapplication.reminders.AlarmReceiver;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeActivity extends AppCompatActivity {
@@ -40,7 +40,7 @@ public class HomeActivity extends AppCompatActivity {
     NavigationView navigationView;
     public ActionBarDrawerToggle actionBarDrawerToggle;
 
-    Button fabChat;
+    Button chatgpt;
 
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
@@ -55,8 +55,8 @@ public class HomeActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigation_view);
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
-        FloatingActionButton fabChat = findViewById(R.id.fabChat);
 
+//        chatgpt = findViewById(R.id.button_skin_chat);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -68,14 +68,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        fabChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, chat.class);
-                startActivity(intent); // Add this line to start the activity
-            }
-        });
-
+//        chatgpt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(HomeActivity.this,ChatActivity.class);
+//            }
+//        });
 
 
 
@@ -96,6 +94,16 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName("Tejas").build();
+        firebaseAuth.getCurrentUser().updateProfile(userProfileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+//                    firebaseAuth.getCurrentUser().reload();
+                }
+            }
+        });
+
         navigationView.getMenu().getItem(0).setChecked(true);
 
         // to make the Navigation drawer icon always appear on the action bar
@@ -104,7 +112,6 @@ public class HomeActivity extends AppCompatActivity {
 //        addNotification();
 
     }
-
 
     public void selectDrawerItem(MenuItem menuItem) {
         Class fragmentClass;
