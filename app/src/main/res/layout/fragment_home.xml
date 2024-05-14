@@ -258,14 +258,14 @@
                         android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/chat" />
+                        android:src="@drawable/step" />
 
                     <com.example.myapplication.patient.Views.RobotoBoldTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="9dp"
-                        android:text="Chatbot" />
+                        android:text="Step Counter" />
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>

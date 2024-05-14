@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    CardView appointmentBooking, medicineReminder,waterReminder, skinActivity, chat, nearHospital , video_call;
+    CardView appointmentBooking, medicineReminder,waterReminder, skinActivity, chat, nearHospital , video_call,  falldetection;
 
     View view;
     TextView homeUsernameDisplay;
@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment {
         nearHospital = view.findViewById(R.id.nearHospital);
         video_call = view.findViewById(R.id.video_call);
         homeUsernameDisplay = view.findViewById(R.id.home_username_display);
-
+        falldetection =view.findViewById(R.id.fall);
         homeUsernameDisplay.setText ("Welcome "+((HomeActivity)getContext()).getFirebaseAuth().getCurrentUser().getDisplayName());
 
 
@@ -113,7 +113,7 @@ public class HomeFragment extends Fragment {
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), com.example.myapplication.Chat.chat.class);
+                Intent intent = new Intent(getContext(), StepCounterActivity.class);
                 startActivity(intent);
             }
         });
@@ -129,6 +129,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Medicine.class);
+                startActivity(intent);
+            }
+        });
+        falldetection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FallDetectionActivity.class);
                 startActivity(intent);
             }
         });
