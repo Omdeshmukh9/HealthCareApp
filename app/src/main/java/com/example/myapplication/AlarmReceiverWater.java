@@ -1,4 +1,6 @@
-package com.example.myapplication.medicine;
+package com.example.myapplication;
+
+
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -11,13 +13,9 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.example.myapplication.NotificationView;
-import com.example.myapplication.R;
-import com.example.myapplication.medicine.PopupActivity;
-
 import timber.log.Timber;
 
-public class AlarmReceiver extends BroadcastReceiver {
+public class AlarmReceiverWater extends BroadcastReceiver {
     private static final int NOTIFICATION_ID = 123;
 
     @Override
@@ -69,3 +67,4 @@ public class AlarmReceiver extends BroadcastReceiver {
 //        }
     }
 }
+

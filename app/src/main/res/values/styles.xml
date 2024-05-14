@@ -34,15 +34,15 @@
         <item name="subtitleTextAppearance">@style/ToolbarSubtitleTextAppearance</item>
     </style>
 
+    <style name="Button.White" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">#00EF7F</item>
+    </style>
+
     <style name="ToolbarTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="ToolbarSubtitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
         <item name="android:textColor">@android:color/white</item>
-    </style>
-
-    <style name="Button.White" parent="ThemeOverlay.AppCompat">
-        <item name="colorAccent">#00EF7F</item>
     </style>
 </resources>

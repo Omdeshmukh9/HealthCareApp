@@ -20,6 +20,7 @@ import com.example.myapplication.patient.HomeActivity;
 import com.example.myapplication.patient.ReminderFragment;
 import com.example.myapplication.patient.SkinActivity;
 import com.example.myapplication.patient.WaterReminderFragment;
+import com.example.myapplication.reminders.Medicine;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -120,7 +121,8 @@ public class HomeFragment extends Fragment {
         medicineReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((HomeActivity) getContext()).changeFragment(ReminderFragment.newInstance());
+                Intent intent = new Intent(getContext(), Medicine.class);
+                startActivity(intent);
             }
         });
 

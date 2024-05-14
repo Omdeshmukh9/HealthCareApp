@@ -2,8 +2,8 @@ package com.example.myapplication.Chat;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,13 +18,13 @@ import com.google.ai.client.generativeai.type.GenerateContentResponse;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import androidx.appcompat.widget.Toolbar;
+
 import java.util.ArrayList;
 
 public class chat extends AppCompatActivity {
 
     private EditText editTextMessage;
-    private Button buttonSend;
+    private ImageButton buttonSend;
     private TextView textViewResult;
     private RecyclerView recyclerView;
     private ChatAdapter adapter;
@@ -39,13 +39,7 @@ public class chat extends AppCompatActivity {
         buttonSend = findViewById(R.id.buttonSend);
 
         recyclerView = findViewById(R.id.recycler_view);
-        Toolbar toolbar = findViewById(R.id.toolbar);
 
-        // Set the title
-        toolbar.setTitle("ChatBot");
-
-        // Set the toolbar as the support action bar
-        setSupportActionBar(toolbar);
         messages = new ArrayList<>();
         adapter = new ChatAdapter(this, messages);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

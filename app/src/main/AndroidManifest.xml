@@ -29,7 +29,9 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -49,8 +51,12 @@
         <activity android:name=".patient.HomeActivity" />
         <activity android:name=".patient.SkinActivity"/>
         <activity android:name=".VideoChat.callActivity"/>
-        <activity android:name=".medicine.MedicineActivity"/>
-        <activity android:name=".medicine.PopupActivity"/>
+        <activity android:name=".reminders.Medicine"/>
+        <activity android:name=".reminders.Popup"/>
+
+
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -60,6 +66,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".medicine.AlarmReceiver"/>
+
+
+       <receiver android:name=".reminders.AlarmReceiver"/>
     </application>
 </manifest>
