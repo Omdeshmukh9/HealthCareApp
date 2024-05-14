@@ -7,6 +7,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Vibrator;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -17,6 +18,8 @@ public class AlarmReceiver extends BroadcastReceiver
     @Override
     public void onReceive(Context context, Intent intent)
     {
+
+        Log.d("AlarmReceiver", "onReceive: ");
         //we will use vibrator first
         Vibrator vibrator = (Vibrator)context.getSystemService(context.VIBRATOR_SERVICE);
         vibrator.vibrate(4000);
@@ -32,6 +35,7 @@ public class AlarmReceiver extends BroadcastReceiver
 
         Intent popupIntent = new Intent(context, Popup.class);
         popupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        popupIntent.setData(alarmUri);
         context.startActivity(popupIntent);
 
     }

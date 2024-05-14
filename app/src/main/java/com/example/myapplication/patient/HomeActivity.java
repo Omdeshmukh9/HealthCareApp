@@ -61,6 +61,7 @@ public class HomeActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
+
         // pass the Open and Close toggle for the drawer layout listener
         // to toggle the button
         drawerLayout.addDrawerListener(actionBarDrawerToggle);

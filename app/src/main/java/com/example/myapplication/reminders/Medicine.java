@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -51,7 +52,7 @@ public class Medicine extends AppCompatActivity {
                 else
                     time = time + (1000 * 60 * 60 * 24);
             }
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, 10000, pendingIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, 60000, pendingIntent);
             findViewById(R.id.alarmCardView).setVisibility(View.VISIBLE); // Show CardView
         } else {
             alarmManager.cancel(pendingIntent);

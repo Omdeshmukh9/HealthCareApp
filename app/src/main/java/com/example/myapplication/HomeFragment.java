@@ -23,6 +23,8 @@ import com.example.myapplication.patient.ReminderFragment;
 import com.example.myapplication.patient.SkinActivity;
 import com.example.myapplication.patient.WaterReminderFragment;
 import com.example.myapplication.reminders.Medicine;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 
@@ -84,7 +86,10 @@ public class HomeFragment extends Fragment {
         video_call = view.findViewById(R.id.video_call);
         homeUsernameDisplay = view.findViewById(R.id.home_username_display);
         falldetection =view.findViewById(R.id.fall);
-        homeUsernameDisplay.setText ("Welcome "+((HomeActivity)getContext()).getFirebaseAuth().getCurrentUser().getDisplayName());
+        FirebaseUser user = ((HomeActivity)getContext()).getFirebaseAuth().getCurrentUser();
+        user.reload();
+
+        homeUsernameDisplay.setText ("Welcome "+user.getDisplayName());
 
 
         appointmentBooking.setOnClickListener(new View.OnClickListener() {

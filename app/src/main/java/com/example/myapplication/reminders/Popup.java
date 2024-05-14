@@ -1,6 +1,9 @@
 package com.example.myapplication.reminders;
 
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -39,14 +42,23 @@ public class Popup extends AppCompatActivity {
         // Save data to Firestore
         saveDataToFirestore(medicineName, currentDate);
 
+        stopRingtone();
+
         // Redirect user to home screen
         redirectToHome();
+    }
+
+    private void stopRingtone(){
+        Ringtone ringtone = RingtoneManager.getRingtone(this, getIntent().getData());
+        ringtone.stop();
     }
 
     // Called when the user clicks the "No" button
     public void onNoButtonClicked(View view) {
         // Save "No medicine taken" to Firestore
         saveDataToFirestore("No medicine taken", null);
+
+        stopRingtone();
 
         // Redirect user to home screen
         redirectToHome();

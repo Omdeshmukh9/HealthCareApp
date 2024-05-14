@@ -55,7 +55,7 @@
             android:layout_marginStart="16dp"
             android:background="@android:color/transparent"
             android:contentDescription="No"
-            android:onClick="onYesButtonClicked"
+            android:onClick="onNoButtonClicked"
             android:scaleType="centerCrop"
             android:src="@drawable/wrong" />
     </LinearLayout>
