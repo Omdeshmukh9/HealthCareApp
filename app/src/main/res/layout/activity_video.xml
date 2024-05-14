@@ -11,7 +11,7 @@
         android:layout_height="200dp"
         android:layout_marginTop="16dp"
 
-        android:src="@drawable/emegency"
+        android:src="@drawable/online"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
             android:layout_weight="1"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
-            android:hint="Invitee UserID"
+            android:hint="Enter Patient email"
             android:minWidth="100dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -87,16 +87,6 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/listViewDoctors"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout2"
-        app:layout_constraintVertical_bias="1.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,6 +51,7 @@
         <activity android:name=".StepCounterActivity" android:exported="true"/>
         <activity android:name=".FallDetectionActivity" android:exported="true"/>
         <activity android:name=".Payment"/>
+        <activity android:name=".VideoChat.Video"/>
 
         <activity
             android:name=".MainActivity"
