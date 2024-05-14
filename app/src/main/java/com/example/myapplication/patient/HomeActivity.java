@@ -27,8 +27,11 @@ import com.example.myapplication.NotificationView;
 import com.example.myapplication.R;
 
 import com.example.myapplication.reminders.AlarmReceiver;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeActivity extends AppCompatActivity {
@@ -88,6 +91,16 @@ public class HomeActivity extends AppCompatActivity {
                     selectDrawerItem(menuItem);
                 }
                 return false;
+            }
+        });
+
+        UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName("Tejas").build();
+        firebaseAuth.getCurrentUser().updateProfile(userProfileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+//                    firebaseAuth.getCurrentUser().reload();
+                }
             }
         });
 
