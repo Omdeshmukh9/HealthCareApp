@@ -123,7 +123,7 @@ public class HomeFragment extends Fragment {
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), StepCounterActivity.class);
+                Intent intent = new Intent(getContext(), Payment.class);
                 startActivity(intent);
             }
         });
