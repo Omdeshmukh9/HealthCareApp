@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginVertical="70dp"
     tools:context=".FallDetectionActivity">
+
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:src="@drawable/fall"/>
+
 
     <EditText
         android:id="@+id/phoneNumberEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_margin="16dp"
+        android:layout_marginVertical="20dp"
+        android:layout_marginHorizontal="20dp"
         android:hint="Emergency Phone Number"
         android:inputType="phone"/>
 
@@ -18,9 +29,8 @@
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/phoneNumberEditText"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:layout_marginVertical="10dp"
         android:text="ADD"/>
 
     <ToggleButton
@@ -28,9 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enable Fall Detection"
-        android:layout_below="@id/addButton"
-        android:layout_centerHorizontal="true"
-        android:checked="false"
-        android:layout_centerVertical="true"/>
+        android:layout_gravity="center"
+       />
 
-</RelativeLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

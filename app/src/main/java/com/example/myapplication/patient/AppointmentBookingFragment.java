@@ -1,6 +1,7 @@
 package com.example.myapplication.patient;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,7 +23,9 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.myapplication.HomeFragment;
+import com.example.myapplication.Payment;
 import com.example.myapplication.R;
+import com.example.myapplication.StepCounterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -123,6 +126,9 @@ public class AppointmentBookingFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent intent = new Intent(getContext(), Payment.class);
+                startActivity(intent);
                 uploadData();
             }
         });
