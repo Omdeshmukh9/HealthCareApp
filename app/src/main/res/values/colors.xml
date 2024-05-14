@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#F3EBF6</color>
+    <color name="cardBackground">#989798</color>
     <color name="colorAccent">#03a9f4</color>
     <color name="colorPrimary">#2196f3</color>
     <color name="colorPrimaryDark">#1976d2</color>
@@ -10,6 +11,16 @@
 
     <drawable name="touchFeedback">#CFD8DC</drawable>
     <color name="lavender">#8692f7</color>
+
+
+
+        <color name="color_one">#fb7268</color>
+        <color name="color_white">#ededf2</color>
+        <color name="color_two">#E3E0E0</color>
+
+        <color name="green">#66BB6A</color>
+        <color name="red">#EF5350</color>
+
 
 
 </resources>

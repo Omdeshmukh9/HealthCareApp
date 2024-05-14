@@ -52,8 +52,7 @@
                         android:textSize="20sp"
                         android:id="@+id/home_username_display"
                         android:layout_marginHorizontal="40dp"
-                        android:layout_gravity="center"
-                        android:text="Welcome" />
+                        android:layout_gravity="center" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
