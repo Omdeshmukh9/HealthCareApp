@@ -11,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.myapplication.Chat.chat;
 import com.example.myapplication.R;
 import com.example.myapplication.VideoChat.VideoActivity;
 import com.example.myapplication.patient.HomeActivity;
+import com.example.myapplication.patient.SkinActivity;
 import com.example.myapplication.patient.WaterReminderFragment;
 import com.example.myapplication.reminders.Medicine;
 import com.google.ai.client.generativeai.Chat;
@@ -56,7 +58,7 @@ public class DoctorHomeFragment extends Fragment {
     }
 
 
-    CardView appointments, videoCall,pactientReviews , waterReminder ,chatbot;
+    CardView appointments, videoCall,pactientReviews , waterReminder ,chatbot , skinActivity;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -69,6 +71,7 @@ public class DoctorHomeFragment extends Fragment {
         pactientReviews = view.findViewById(R.id.patientReviews);
         waterReminder = view.findViewById(R.id.waterReminder);
         chatbot = view.findViewById(R.id.chatgpt);
+        skinActivity = view.findViewById(R.id.skinActivity);
 
 
         appointments.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +89,14 @@ public class DoctorHomeFragment extends Fragment {
             }
         });
 
+        skinActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), SkinActivity.class);
+                startActivity(intent);
+            }
+        });
+
         pactientReviews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,14 +108,14 @@ public class DoctorHomeFragment extends Fragment {
         waterReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((HomeActivity) getContext()).changeFragment(WaterReminderFragment.newInstance());
+                ((DoctorHomeActivity) getContext()).changeFragment(WaterReminderFragment.newInstance());
             }
         });
 
-        waterReminder.setOnClickListener(new View.OnClickListener() {
+        chatbot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Chat.class);
+                Intent intent = new Intent(getContext(), chat.class);
                 startActivity(intent);
             }
         });
