@@ -52,8 +52,9 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    TextView stepsCount , username, email;
+    TextView stepsCount, username, email;
     PieChart pieChart;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,37 +66,51 @@ public class ProfileFragment extends Fragment {
         email = view.findViewById(R.id.profile_email_display);
         pieChart = view.findViewById(R.id.piechart);
 
-        ((HomeActivity)getContext()).getFirebaseFirestore().collection("users_patients")
-                .document(((HomeActivity)getContext()).getFirebaseAuth().getCurrentUser().getUid())
+        ((HomeActivity) getContext()).getFirebaseFirestore().collection("users_patients")
+                .document(((HomeActivity) getContext()).getFirebaseAuth().getCurrentUser().getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()){
-                            stepsCount.setText(task.getResult().get("steps_count").toString());
-                            username.setText(task.getResult().get("username").toString());
-                            email.setText(task.getResult().get("email").toString());
-                            pieChart.addPieSlice(new PieModel(
-                                    "Medicines Taken",
-                                    10,
-                                    Color.parseColor("#66BB6A")));
-                            pieChart.addPieSlice(new PieModel(
-                                    "Medicines Neglected",
-                                    4,
-                                    Color.parseColor("#EF5350")));
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null) {
+                                String steps = document.getString("steps_count");
+                                String user = document.getString("username");
+                                String userEmail = document.getString("email");
 
+                                if (steps != null) {
+                                    stepsCount.setText(steps);
+                                }
+                                if (user != null) {
+                                    username.setText(user);
+                                }
+                                if (userEmail != null) {
+                                    email.setText(userEmail);
+                                }
+
+                                pieChart.addPieSlice(new PieModel(
+                                        "Medicines Taken",
+                                        10,
+                                        Color.parseColor("#66BB6A")));
+                                pieChart.addPieSlice(new PieModel(
+                                        "Medicines Neglected",
+                                        4,
+                                        Color.parseColor("#EF5350")));
+                            } else {
+                                Log.d("ProfileFragment", "No such document");
+                            }
+                        } else {
+                            Log.d("ProfileFragment", "get failed with ", task.getException());
                         }
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
+                        Log.e("ProfileFragment", "Error getting documents: ", e);
                     }
                 });
-
-
-
 
         return view;
     }
