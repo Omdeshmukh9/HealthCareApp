@@ -49,6 +49,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="start"
                             android:textSize="20sp"
+                            android:text=" Tejas "
                             android:id="@+id/profile_username_display"
                             android:layout_gravity="center" />
 
@@ -57,6 +58,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="start"
                             android:textSize="20sp"
+                            android:text="tejasp@xyz.com"
                             android:id="@+id/profile_email_display"
 
                              />
@@ -97,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="1000"
+                    android:text="500"
                     android:textSize="20sp"
                     />
 

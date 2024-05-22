@@ -13,6 +13,10 @@ import android.view.ViewGroup;
 
 import com.example.myapplication.R;
 import com.example.myapplication.VideoChat.VideoActivity;
+import com.example.myapplication.patient.HomeActivity;
+import com.example.myapplication.patient.WaterReminderFragment;
+import com.example.myapplication.reminders.Medicine;
+import com.google.ai.client.generativeai.Chat;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,7 +56,7 @@ public class DoctorHomeFragment extends Fragment {
     }
 
 
-    CardView appointments, videoCall;
+    CardView appointments, videoCall,pactientReviews , waterReminder ,chatbot;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -62,6 +66,9 @@ public class DoctorHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_doctor_home, container, false);
         appointments = view.findViewById(R.id.appointments);
         videoCall = view.findViewById(R.id.videocall);
+        pactientReviews = view.findViewById(R.id.patientReviews);
+        waterReminder = view.findViewById(R.id.waterReminder);
+        chatbot = view.findViewById(R.id.chatgpt);
 
 
         appointments.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +86,28 @@ public class DoctorHomeFragment extends Fragment {
             }
         });
 
+        pactientReviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Medicine.class);
+                startActivity(intent);
+            }
+        });
 
+        waterReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((HomeActivity) getContext()).changeFragment(WaterReminderFragment.newInstance());
+            }
+        });
+
+        waterReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Chat.class);
+                startActivity(intent);
+            }
+        });
 
 
 

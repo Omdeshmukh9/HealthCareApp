@@ -52,7 +52,7 @@ public class Medicine extends AppCompatActivity {
                 else
                     time = time + (1000 * 60 * 60 * 24);
             }
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, 60000, pendingIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, 600000, pendingIntent);
             findViewById(R.id.alarmCardView).setVisibility(View.VISIBLE); // Show CardView
         } else {
             alarmManager.cancel(pendingIntent);
