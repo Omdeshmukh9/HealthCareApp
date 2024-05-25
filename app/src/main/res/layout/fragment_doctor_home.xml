@@ -208,14 +208,14 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/skin"/>
+                        android:src="@drawable/disease09"/>
 
                     <com.example.myapplication.patient.Views.RobotoBoldTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="9dp"
                         android:gravity="center"
-                        android:text="Skin Disease"/>
+                        android:text="Disease Detector"/>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
